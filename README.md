@@ -1,2 +1,2 @@
-# caixa-eletr-nico
+# caixa-eletronico
 Simulador de Caixa Eletrônico 
