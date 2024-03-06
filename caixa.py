@@ -3,7 +3,7 @@ import string
 from tqdm  import tqdm
 import time
 
-class caixa:
+class banco:
  def __init__(self, titular, codigo):
      self.titular: titular
      self.numero_conta = ''.join(random.choices(string.digits, k=5))
@@ -58,11 +58,46 @@ class caixa:
             self.saldo -= valor
             numero_conta.saldo += valor
             print()
-            print('Atualizando tranferência...')
+            print('Atualizando transferência...')
         for i in tqdm(range(2)):
              time.sleep(1)
              print()
-             print(f'Tranferencia realizada com sucesso para a conta {conta.numero_conta}!')
+             print(f'Transferência realizada com sucesso para a conta {conta.numero_conta}!')
+        while True:
+            usuario = input('Cadastre seu nome: ')
+            if all(c.isalpha() for c in usuario):
+                break
+            else:
+                print('Somente letras!')
+
+        while True:
+            senha = input('Cadastre sua senha: ')
+            if all (c.isnumeric() for c in senha):
+                break
+            else:
+                print('Somente números!')
+            print()
+            print('Criando conta...')
+            for i in tqdm(range(2)):
+                time.sleep(1)
+        
+        nome = input('Digite seu nome: ')
+        while nome != usuario:
+            nome = input('Nome incorreto! Digite novamente: ')
+        validar = input('Digite sua senha: ')
+        while validar != senha:
+            validar = input('Senha incorreta! Digite novamente: ')
+        else:
+            print(f'Bem vindo(a) {usuario}')
+
+        conta = banco(usuario, senha)
+        conta.numero_conta = random.randint(10000, 99999)
+            print()
+            print(f'Sua conta foi criada com sucesso! Seu número de conta é: {conta.numero_conta}.')
+            print()
+
+            contas = []
+            
              
          
             
