@@ -1,6 +1,6 @@
 import random
 import string
-from tqmd  import tqmd
+from tqdm  import tqdm
 import time
 
 class caixa:
@@ -28,5 +28,23 @@ class caixa:
              time.sleep(1)
          print()
          print('Saldo insuficiente.')
+     else:
+         self.saldo -= valor
+         print()
+         print('Atualizando saque...')
+         for i in tqdm(range(2)):
+             time.sleep(1)
+         print()
+         print(f'Saque realizado com sucesso! Novo saldo: R${self.saldo:.2f}')
          
-         
+ def consultar(self):
+     print()
+     print('Atualizando saldo...')
+     for i in tqdm(range(2)):
+         time.sleep(1)
+     print()
+     print(f'Titular: {self.titular}')
+     print(f'Número da conta: {self.numero_conta}')
+     print(f'Saldo: R${self.saldo:.2f}')
+     
+     
