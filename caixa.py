@@ -38,13 +38,32 @@ class caixa:
          print(f'Saque realizado com sucesso! Novo saldo: R${self.saldo:.2f}')
          
  def consultar(self):
-     print()
-     print('Atualizando saldo...')
-     for i in tqdm(range(2)):
-         time.sleep(1)
-     print()
-     print(f'Titular: {self.titular}')
-     print(f'Número da conta: {self.numero_conta}')
-     print(f'Saldo: R${self.saldo:.2f}')
+         print()
+         print('Atualizando saldo...')
+         for i in tqdm(range(2)):
+             time.sleep(1)
+         print()
+         print(f'Titular: {self.titular}')
+         print(f'Número da conta: {self.numero_conta}')
+         print(f'Saldo: R${self.saldo:.2f}')
      
-     
+ def transferir(self, valor, numero_conta):
+        if valor > self.saldo:
+         print()
+         print('Atualizando tranferência...')
+         for i in tqdm(range(2)):
+             time.sleep(1)
+         print()
+        else:
+            self.saldo -= valor
+            numero_conta.saldo += valor
+            print()
+            print('Atualizando tranferência...')
+        for i in tqdm(range(2)):
+             time.sleep(1)
+             print()
+             print(f'Tranferencia realizada com sucesso para a conta {conta.numero_conta}!')
+             
+         
+            
+    
