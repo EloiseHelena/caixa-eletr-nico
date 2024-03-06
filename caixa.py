@@ -98,6 +98,49 @@ class banco:
 
             contas = []
             
+            conta1 = banco(nome, validar)
+            contas.append(conta1)
+
+def login():
+    while True:
+        print('\n ------------  INÍCIO  -------------')
+        print('1 - Cadastrar conta')
+        print('2 - Entrar na conta')
+        print('3 - Sair')
+        menu = input('Digite a opção desejada:  ')
+
+        if menu == '1':
+            while True:
+                cliente = input('Cadastre seu nome: ')
+                if all(c.isalpha() for c in cliente):
+                    break
+                else:
+                    print('Somente letras!')
+
+            while True:
+                codigo = input('Cadastre sua senha: ')
+                if all(c.isnumeric() for c in codigo):
+                    break
+                else:
+                    print('Somente números!')
+                print()
+                print(' Criando conta...')
+                for i in tqdm(range(2)):
+                    time.sleep(1)
+
+                nome = input('Digite seu nome: ')
+                while nome != cliente:
+                    nome = input ('Nome incorreto! Digite novamente: ')
+                validar = input('Digite sua senha: ')
+                while validar != codigo:
+                    validar = input('Senha incorreta! Digite novamente: ')
+                else:
+                    print(f'Bem vindo(a) {cliente}')
+                conta = banco(cliente, codigo)
+                
+
+               
+            
              
          
             
