@@ -7,11 +7,10 @@ import time
 
 class banco:
  def __init__(self, titular, codigo):
-     self.titular: titular
+     self.titular = titular
      self.numero_conta = ''.join(random.choices(string.digits, k=5))
      self.saldo = 0
      self.codigo = codigo
-     self.usuario = usuario
 
   #Realizar depósito#
  def depositar(self, valor):
@@ -111,6 +110,7 @@ class banco:
             contas.append(conta1)
 
 def login():
+    global conta
     while True:
         print('\n ------------  INÍCIO  -------------')
         print('1 - Cadastrar conta')
@@ -145,6 +145,7 @@ def login():
                     validar = input('Senha incorreta! Digite novamente: ')
                 else:
                     print(f'Bem vindo(a) {cliente}')
+                    
                 conta = banco(cliente, codigo)
                 conta.numero_conta = random.randint(10000, 99999)
                 print()
@@ -188,11 +189,11 @@ def login():
                             else:
                                 print('Titular da conta não encontrado.')
                     elif opcao == '5':
-                     print()
-                     print('Você saiu do programa...  \n')
-                     login()
-                else:
-                    print('Opção inválida!')
+                        print()
+                        print('Você saiu do programa...  \n')
+                        login()
+                    else:
+                        print('Opção inválida!')
         elif menu == '2':
             nome = input('Digite seu nome: ')
             while nome != usuario:
@@ -209,46 +210,46 @@ def login():
         else:
             print('Opção inválida!')
 
-    while True:
-        print('\n ------------  MENU  ------------')
-        print('1 - Consultar Saldo')
-        print('2 - Depositar')
-        print('3 - Sacar')
-        print('4 - Transferir')
-        print('5 - Sair ')
-        opcao = input('Digite a opção desejada: ')
+        while True:
+            print('\n ------------  MENU  ------------')
+            print('1 - Consultar Saldo')
+            print('2 - Depositar')
+            print('3 - Sacar')
+            print('4 - Transferir')
+            print('5 - Sair ')
+            opcao = input('Digite a opção desejada: ')
 
-        if opcao == '1':
-            conta.consultar()
-        elif opcao == '2':
-            valor = float(input('Digite o valor a ser depositado: '))
-            conta.depositar(valor)
-        elif opcao == '3':
-            valor = float(input('Digite o valor a ser sacado: R$'))
-        elif opcao == '4':
-            valor = float(input('Digite o valor a ser transferido: R$'))
-            nome = input('Digite o nome do titular da conta que receberá a tranferência: ')
-            if nome.lower() == nome.lower():
-                print('Não é possível tranferir para a própria conta.')
-            else:
-                encontrou_conta = False
-                for c in contas:
-                    if c.titular.lower() == nome.lower():
-                        nome = c
-                        encontrou_conta = True
-                        break
-                if encontrou_conta:
-                    conta.transferir(valor, nome)
+            if opcao == '1':
+                conta.consultar()
+            elif opcao == '2':
+                valor = float(input('Digite o valor a ser depositado: '))
+                conta.depositar(valor)
+            elif opcao == '3':
+                valor = float(input('Digite o valor a ser sacado: R$'))
+            elif opcao == '4':
+                valor = float(input('Digite o valor a ser transferido: R$'))
+                nome = input('Digite o nome do titular da conta que receberá a tranferência: ')
+                if nome.lower() == nome.lower():
+                    print('Não é possível tranferir para a própria conta.')
                 else:
-                    print('Titular da conta não encontrado.')
-        elif opcao == '5':
-            print()
-            print('Você saiu do programa...  \n')
-            login()
-        else:
-            print('Opção inválida!')
+                    encontrou_conta = False
+                    for c in contas:
+                        if c.titular.lower() == nome.lower():
+                            nome = c
+                            encontrou_conta = True
+                            break
+                    if encontrou_conta:
+                        conta.transferir(valor, nome)
+                    else:
+                        print('Titular da conta não encontrado.')
+            elif opcao == '5':
+                print()
+                print('Você saiu do programa...  \n')
+                login()
+            else:
+                print('Opção inválida!')
 
-
+conta = banco("", "")
 if __name__ == '__main__':
     login()
 
